@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Services\Category;
-use App\Repositories\Category\CategoryRepository;
+namespace App\Services;
+use App\Repositories\CategoryRepository;
 
 class CategoryService
 {

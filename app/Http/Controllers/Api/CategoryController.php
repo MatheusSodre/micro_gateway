@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryResource;
-use App\Services\Category\CategoryService;
+use App\Services\CategoryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Response as HttpResponse;
@@ -27,7 +27,6 @@ class CategoryController extends Controller
     public function index():JsonResponse
     {
         return Response::json(CategoryResource::collection($this->categoryService->getAll()));
-
     }
     /**
      * Store a newly created resource in storage.
