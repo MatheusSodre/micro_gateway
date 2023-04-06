@@ -3,24 +3,38 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoryResource;
+use App\Services\Category\CategoryService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Http\Response as HttpResponse;
+use Illuminate\Http\JsonResponse;
 
 class CategoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @param CategoryService $categoryService
+     *
      */
-    public function index()
+    public function __construct(private CategoryService $categoryService)
     {
-        return response()->json(['categories']);
+        $this->categoryService = $categoryService;
     }
 
     /**
+     * Display a listing of the resource.
+     */
+    public function index():JsonResponse
+    {
+        return Response::json(CategoryResource::collection($this->categoryService->getAll()));
+
+    }
+    /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request):JsonResponse
     {
-        //
+        return Response::json(new CategoryResource($this->categoryService->store($request->all())),HttpResponse::HTTP_CREATED);
     }
 
     /**
@@ -28,7 +42,7 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return Response::json(new CategoryResource($this->categoryService->getById($id)),HttpResponse::HTTP_OK);
     }
 
     /**
@@ -36,7 +50,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return Response::json($this->categoryService->update($request->all(),$id),HttpResponse::HTTP_OK);
     }
 
     /**
@@ -44,6 +58,6 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return Response::json($this->categoryService->destroy($id),HttpResponse::HTTP_OK);
     }
 }
