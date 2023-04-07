@@ -1,7 +1,6 @@
-version: '3.8'
-
+version: "3.7"
 services:
-    # microservices
+    # imagem micro 01
     micro_01:
         build:
             args:
@@ -10,44 +9,68 @@ services:
             context: ./
             dockerfile: Dockerfile
         image: laravel-app
-        # restart: unless-stopped
+        restart: unless-stopped
         working_dir: /var/www/
         volumes:
             - ./:/var/www
+        depends_on:
+            - redis_micro_01
+            - queue
         networks:
             - microservices
 
     # nginx
     nginx:
         image: nginx:alpine
-        # restart: unless-stopped
+        restart: unless-stopped
         ports:
             - 8000:80
             - 443:443
         volumes:
-          - ./:/var/www
-          - ./docker/nginx/:/etc/nginx/conf.d
+            - ./:/var/www
+            - ./docker/nginx/:/etc/nginx/conf.d/
         networks:
-          - microservices
+            - microservices
 
     # mysql micro 01
-    mysql:
-        image: 'mysql/mysql-server:8.0'
-        ports:
-            - 3306:3306
-        # restart: unless-stooped
+    db_micro_01:
+        image: mysql:5.7.22
+        restart: unless-stopped
         environment:
-            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-            MYSQL_ROOT_HOST: ${DB_HOST}
             MYSQL_DATABASE: ${DB_DATABASE}
-            MYSQL_USER: ${DB_USERNAME}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
             MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_USER: ${DB_USERNAME}
         volumes:
             - ./.docker/mysql/dbdata:/var/lib/mysql
+        ports:
+            - 3308:3306
+        networks:
+            - microservices
+
+    # queue micro 01
+    queue:
+        build:
+            args:
+                user: matheus
+                uid: 1000
+            context: ./
+            dockerfile: Dockerfile
+        # restart: unless-stopped
+        command: "php artisan queue:work"
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - redis_micro_01
+        networks:
+            - microservices
+
+    #redis
+    redis_micro_01:
+        image: redis:latest
         networks:
             - microservices
 
 networks:
     microservices:
         driver: bridge
-

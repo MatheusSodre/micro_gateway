@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryResource;
+use App\Models\Category;
 use App\Services\CategoryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
@@ -16,17 +17,23 @@ class CategoryController extends Controller
      * @param CategoryService $categoryService
      *
      */
-    public function __construct(private CategoryService $categoryService)
+    // public function __construct(private CategoryService $categoryService)
+    // {
+    //     $this->categoryService = $categoryService;
+    // }
+    public function __construct(private Category $category)
     {
-        $this->categoryService = $categoryService;
+        $this->category = $category;
     }
-
     /**
      * Display a listing of the resource.
      */
     public function index():JsonResponse
     {
-        return Response::json(CategoryResource::collection($this->categoryService->getAll()));
+        $categories = $this->category->get();
+        return response()->json($categories);
+
+        // return Response::json(CategoryResource::collection($this->categoryService->getAll()));
     }
     /**
      * Store a newly created resource in storage.
