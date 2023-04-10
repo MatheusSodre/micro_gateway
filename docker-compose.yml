@@ -18,6 +18,8 @@ services:
             - queue
         networks:
             - microservices
+        links:
+            - db_micro_01
 
     # nginx
     nginx:
@@ -34,6 +36,7 @@ services:
 
     # mysql micro 01
     db_micro_01:
+        container_name: db_micro_01
         image: mysql:5.7.22
         restart: unless-stopped
         environment:
@@ -45,6 +48,9 @@ services:
             - ./.docker/mysql/dbdata:/var/lib/mysql
         ports:
             - 3308:3306
+        command: mysqld --character-set-server=utf8mb4
+                --collation-server=utf8mb4_unicode_ci
+                --default-authentication-plugin=mysql_native_password --sql-mode=""
         networks:
             - microservices
 

@@ -31,6 +31,7 @@ class BaseRepository
     public function all($relations = [], $columns = ['*']): mixed
     {
         return $this->model::with($relations)->get($columns);
+        // return $this->model->get($columns);
     }
 
     /**
