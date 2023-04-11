@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdateCategory;
 use App\Http\Resources\CategoryResource;
-use App\Models\Category;
+
 use App\Services\CategoryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Http\JsonResponse;
+
 
 class CategoryController extends Controller
 {
@@ -31,7 +33,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request):JsonResponse
+    public function store(StoreUpdateCategory $request):JsonResponse
     {
         return Response::json(new CategoryResource($this->categoryService->store($request->all())),HttpResponse::HTTP_CREATED);
     }
@@ -57,6 +59,6 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        return Response::json($this->categoryService->destroy($id),HttpResponse::HTTP_OK);
+        return Response::json($this->categoryService->destroy($id),HttpResponse::HTTP_NO_CONTENT);
     }
 }
