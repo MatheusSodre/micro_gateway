@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Repositories;
-use App\Models\Category;
+namespace App\Repositories\Company;
+use App\Models\Company\Category;
 use App\Repositories\BaseRepository;
 
 class CategoryRepository extends BaseRepository
@@ -11,6 +11,4 @@ class CategoryRepository extends BaseRepository
         $this->model = $category;
     }
 }
-
-
 ?>

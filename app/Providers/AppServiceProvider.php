@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
-use App\Models\{
+use App\Models\Company\{
     Category
 };
-use App\Observers\{
+
+use App\Observers\Company\{
     CategoryObserver
 };
 use Illuminate\Support\ServiceProvider;

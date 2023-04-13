@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreUpdateCategory;
-use App\Http\Resources\CategoryResource;
-
-use App\Services\CategoryService;
+use App\Http\Requests\Company\StoreUpdateCategory;
+use App\Http\Resources\Company\CategoryResource;
+use App\Services\Company\CategoryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Str;
 
 
 class CategoryController extends Controller
@@ -28,20 +28,20 @@ class CategoryController extends Controller
      */
     public function index():JsonResponse
     {
-        return Response::json(CategoryResource::collection($this->categoryService->getAll()));
+        return Response::json(CategoryResource::collection($this->categoryService->getAll()),HttpResponse::HTTP_OK);
     }
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreUpdateCategory $request):JsonResponse
     {
-        return Response::json(new CategoryResource($this->categoryService->store($request->all())),HttpResponse::HTTP_CREATED);
+        return Response::json(new CategoryResource($this->categoryService->store($request->validated())),HttpResponse::HTTP_CREATED);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id):JsonResponse
     {
         return Response::json(new CategoryResource($this->categoryService->getById($id)),HttpResponse::HTTP_OK);
     }
@@ -49,15 +49,15 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreUpdateCategory $request, string $id):JsonResponse
     {
-        return Response::json($this->categoryService->update($request->all(),$id),HttpResponse::HTTP_OK);
+        return Response::json($this->categoryService->update($request->validated(),$id),HttpResponse::HTTP_OK);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id):JsonResponse
     {
         return Response::json($this->categoryService->destroy($id),HttpResponse::HTTP_NO_CONTENT);
     }

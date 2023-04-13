@@ -37,7 +37,7 @@ services:
     # mysql micro 01
     db_micro_01:
         container_name: db_micro_01
-        image: mysql:5.7.22
+        image: mysql:8.0
         restart: unless-stopped
         environment:
             MYSQL_DATABASE: ${DB_DATABASE}

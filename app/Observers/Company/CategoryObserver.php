@@ -1,26 +1,28 @@
 <?php
 
-namespace App\Observers;
+namespace App\Observers\Company;
 
-use App\Models\Category;
+
+use App\Models\Company\Category;
 use Illuminate\Support\Str;
+
 
 class CategoryObserver
 {
     /**
-     * Handle the Category "created" event.
+     * Handle the Category "creatind" after event / "created" before event .
      */
     public function creating(Category $category): void
     {
-       $category->url = Str::slug( $category->title, '-');
+       $category->url = Str::slug($category->title,"-");
     }
 
     /**
-     * Handle the Category "updated" event.
+     * Handle the Category "updating" after event / "created" before event.
      */
     public function updating(Category $category): void
     {
-        $category->url = Str::slug( $category->title, '-');
+        $category->url = Str::slug($category->title,"-");
     }
 
     /**
