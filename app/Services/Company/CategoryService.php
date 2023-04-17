@@ -26,7 +26,7 @@ class CategoryService
 
     public function getAll()
     {
-        return $this->categoryRepository->all();
+        return $this->categoryRepository->all($relations = [], $columns = ['*']);
     }
 
     public function getById($id)

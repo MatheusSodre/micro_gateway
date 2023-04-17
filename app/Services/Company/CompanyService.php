@@ -26,13 +26,16 @@ class CompanyService
     {
         return $this->companyRepository->create($data);
     }
-
-
-    public function getAll()
+    
+    public function getAll($relations = [], $columns = ['*'])
     {
-        return $this->companyRepository->all();
+        return $this->companyRepository->all($relations, $columns);
     }
 
+    public function getPaginate($relations = [], $limit = null, $columns = ['*'])
+    {
+        return $this->companyRepository->paginate($relations,$limit,$columns);
+    }
     public function getById($id)
     {
         return $this->companyRepository->findOrFail($id);

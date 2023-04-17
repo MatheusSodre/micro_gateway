@@ -5,9 +5,10 @@ namespace App\Observers\Company;
 
 use App\Models\Company\Category;
 use Illuminate\Support\Str;
+// use Illuminate\Support\Str;
 
 
-class CategoryObserver
+class CategoryObserve
 {
     /**
      * Handle the Category "creatind" after event / "created" before event .

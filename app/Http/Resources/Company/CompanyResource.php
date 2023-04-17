@@ -14,15 +14,16 @@ class CompanyResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        
         return [
             'uuid'     => $this->uuid,
             'name'     => $this->name,
-            'category' => new CategoryResource($this->category_id),
+            'url'      => $this->url,
+            'category' => new CategoryResource($this->category),
             'phone'    => $this->phone,
             'whatsapp' => $this->whatsapp,
             'email'    => $this->email,
             'instagram'=> $this->instagram,
-
         ];
     }
 }

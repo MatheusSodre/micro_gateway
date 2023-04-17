@@ -26,7 +26,7 @@ class CompanyController extends Controller
      */
     public function index():JsonResponse
     {
-        return Response::json(CompanyResource::collection($this->companyService->getAll()),HttpResponse::HTTP_OK);
+        return Response::json(CompanyResource::collection($this->companyService->getPaginate(['category'],5)),HttpResponse::HTTP_OK);
     }
 
     /**

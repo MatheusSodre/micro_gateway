@@ -22,12 +22,12 @@ class StoreUpdateCompany extends FormRequest
     public function rules(): array
     {
         return [
-            'category_id' => 'required|min:3|max:150|unique:companies',
+            'category_id' => 'required|exists:categories,id',
             'name'        => 'required|min:3|max:255|unique:companies',
             'phone'       => 'required|min:3|max:255|unique:companies',
-            'whatsapp'    => 'nullable|min:3|max:255|unique:companies',
+            'whatsapp'    => 'nullable|min:3|max:255',
             'email'       => 'required|email|unique:companies',
-            'instagram'   => 'nullable|min:3|max:255|unique:companies',
+            'instagram'   => 'nullable|min:3|max:255',
         ];
     }
 }
