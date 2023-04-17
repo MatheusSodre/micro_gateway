@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Interfaces\Company\CategoryRepositoryInterface;
 use App\Models\Company\{
     Category
 };
@@ -9,6 +10,7 @@ use App\Models\Company\{
 use App\Observers\Company\{
     CategoryObserver
 };
+use App\Repositories\Company\CategoryRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -18,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        
     }
 
     /**

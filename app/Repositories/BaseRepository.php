@@ -2,9 +2,10 @@
 
 namespace App\Repositories;
 
+use App\Interfaces\BaseRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 
-class BaseRepository
+class BaseRepository implements BaseRepositoryInterface
 {
     /**
      * @var Model
@@ -91,11 +92,6 @@ class BaseRepository
      * @param  Model  $entity
      * @return bool|null
      */
-    // public function delete(Model $entity): bool|null
-    // {
-    //     return $entity->delete();
-    // }
-
     public function delete($id): bool|null
     {
         return $this->model->find($id)->delete();
