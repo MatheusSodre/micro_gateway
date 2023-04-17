@@ -92,11 +92,6 @@ class BaseRepository implements BaseRepositoryInterface
      * @param  Model  $entity
      * @return bool|null
      */
-    // public function delete(Model $entity): bool|null
-    // {
-    //     return $entity->delete();
-    // }
-
     public function delete($id): bool|null
     {
         return $this->model->find($id)->delete();

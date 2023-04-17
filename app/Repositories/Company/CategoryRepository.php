@@ -12,7 +12,5 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
     {
         $this->model = $category;
     }
-    
-    
 }
 ?>
