@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Company;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Company\StoreUpdateCategory;
 use App\Http\Resources\Company\CategoryResource;
 use App\Services\Company\CategoryService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Str;
 
 
 class CategoryController extends Controller
@@ -26,9 +24,10 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index():JsonResponse
+    public function index()
     {
-        return Response::json(CategoryResource::collection($this->categoryService->getAll()),HttpResponse::HTTP_OK);
+        return CategoryResource::collection($this->categoryService->getAll());
+        // return Response::json(CategoryResource::collection($this->categoryService->getAll()),HttpResponse::HTTP_OK);
     }
     /**
      * Store a newly created resource in storage.

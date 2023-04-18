@@ -4,13 +4,16 @@ namespace App\Providers;
 
 use App\Interfaces\Company\CategoryRepositoryInterface;
 use App\Models\Company\{
-    Category
+    Category,
+    Company
+
+};
+use App\Observers\Company\{
+    CategoryObserve,
+    CompanyObserve
 };
 
-use App\Observers\Company\{
-    CategoryObserver
-};
-use App\Repositories\Company\CategoryRepository;
+
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-         Category::observe(CategoryObserver::class);
+         Category::observe(CategoryObserve::class);
+         Company::observe(CompanyObserve::class);
     }
 }
