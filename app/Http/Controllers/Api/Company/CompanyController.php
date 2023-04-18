@@ -26,7 +26,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        return  CompanyResource::collection($this->companyService->getPaginate(['category'],5));
+        return CompanyResource::collection($this->companyService->getPaginate());
         // return Response::json(CompanyResource::collection($this->companyService->getPaginate(['category'],5)),HttpResponse::HTTP_OK);
     }
 
@@ -49,9 +49,9 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreUpdateCompany $request, string $id):JsonResponse
+    public function update(StoreUpdateCompany $request, string $id)
     {
-        return Response::json($this->companyService->update($request->validated(),$id),HttpResponse::HTTP_OK);
+        return $this->companyService->update($request->validated(),$id);
     }
 
     /**

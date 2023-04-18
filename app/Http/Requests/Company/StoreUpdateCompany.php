@@ -21,13 +21,14 @@ class StoreUpdateCompany extends FormRequest
      */
     public function rules(): array
     {
+        $id = $this->company;
         return [
-            'category_id' => 'required|exists:categories,id',
-            'name'        => 'required|min:3|max:255|unique:companies',
-            'phone'       => 'required|min:3|max:255|unique:companies',
-            'whatsapp'    => 'nullable|min:3|max:255',
-            'email'       => 'required|email|unique:companies',
-            'instagram'   => 'nullable|min:3|max:255',
+            'category_id' => "required|exists:categories,id",
+            'name'        => "required|min:3|max:255|unique:companies,name,{$id},id",
+            'phone'       => "required|min:3|max:255|unique:companies,phone,{$id},id",
+            'whatsapp'    => "nullable|min:3|max:255",
+            'email'       => "required|email|unique:companies,email,{$id},id",
+            'instagram'   => "nullable|min:3|max:255",
         ];
     }
 }

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('url')->unique();
             $table->string('phone')->unique();
             $table->string('whatsapp')->unique()->nullable();
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->string('instagram')->unique()->nullable();
             $table->timestamps();
         });

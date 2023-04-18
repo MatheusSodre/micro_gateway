@@ -24,9 +24,10 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index():JsonResponse
+    public function index()
     {
-        return Response::json(CategoryResource::collection($this->categoryService->getAll()),HttpResponse::HTTP_OK);
+        return CategoryResource::collection($this->categoryService->getAll());
+        // return Response::json(CategoryResource::collection($this->categoryService->getAll()),HttpResponse::HTTP_OK);
     }
     /**
      * Store a newly created resource in storage.
