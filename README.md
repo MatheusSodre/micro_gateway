@@ -83,7 +83,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [PHP](https://www.php.net/)
 
 <h1 align="center"> 
-	🚧  Padrões e princípios utilizados  🚧
+	🚧  Padrões/Camadas e princípios utilizados  🚧
 </h1>
 
 <p dir="auto">Todos os padrões e princípios tiveram sua importância para montar um template de fácil manutenção e implementação de novas features, segregando suas responsabilidades deixando o projeto com alta coesão e baixo aclopamento.</p>
@@ -97,6 +97,30 @@ As seguintes ferramentas foram usadas na construção do projeto:
 </p>
 <h4 align="left">
     <a href="https://dev.to/thiagoluna/solid-no-laravel-aplicando-principios-e-boas-praticas-para-entregar-melhores-solucoes-1ogh">🔗 Solid Leia Sobre</a>
+</h4>
+<h3> Validation com Form Request </h3>
+<p dir="auto">
+    As vezes a validação é bem mais complexa ou o seu formulário tem muitos campos, nesse caso, usar o Form Request faz bem mais sentido.
+    As Form Request são classes de requests personalizadas que encapsulam sua própria lógica de validação e autorização.
+</p>
+<h4 align="left">
+    <a href="https://blog.debugeverything.com/pt/laravel-validation-com-form-request/">🔗 From Request Leia Sobre</a>
+</h4>
+
+<h3> API Resource </h3>
+<p dir="auto">
+    O API Resource é uma camada extra que usamos na API para transformar os dados que vamos enviar ao cliente. Ela permite que a estrutura de retorno seja totalmente personalizada, isso nos permite formatar os dados na melhor maneira para entregar ao cliente. Além de garantir o desacoplamento com o model, uma vez que podemos definir a estrutura de forma separada. O conceito da camada de transformação não é exclusividade do Laravel. Inclusive no próprio PHP temos algumas outras bibliotecas que facilitam esse trabalho, uma das mais conhecidas é o Fractal. O API Resource do Laravel facilita bastante a vida quando estamos dentro do Framework, mas também é possível utilizar qualquer outra biblioteca.
+</p>
+<h4 align="left">
+    <a href="https://www.treinaweb.com.br/blog/como-melhorar-o-retorno-das-suas-apis-no-laravel-com-api-resource-do-eloquent">🔗 API Resource Leia Sobre</a>
+</h4>
+
+<h3> Service Pattern </h3>
+<p dir="auto">
+Um serviço aplica a lógica de negócios do seu aplicativo. Ele simplesmente executa uma tarefa definida (por exemplo, calcular um empréstimo, atualizar um usuário) usando as informações fornecidas, usando quaisquer repositórios ou outras classes que você criou fora do serviço.
+</p>
+<h4 align="left">
+    <a href="https://joe-wadsworth.medium.com/laravel-repository-service-pattern-acf50f95726">🔗 Service Layer Leia Sobre</a>
 </h4>
 
 <h3> Repository Pattern </h3>
@@ -115,15 +139,22 @@ Facilita na criação de testes unitários;
     <a href="https://www.twilio.com/blog/repository-pattern-in-laravel-application">🔗 Repository Leia Sobre</a>
 </h4>
 
-<h3> Service Pattern </h3>
+<h3> Models/Entidades</h3>
 <p dir="auto">
-Um serviço aplica a lógica de negócios do seu aplicativo. Ele simplesmente executa uma tarefa definida (por exemplo, calcular um empréstimo, atualizar um usuário) usando as informações fornecidas, usando quaisquer repositórios ou outras classes que você criou fora do serviço.
+O Eloquent ORM incluido com o Laravel fornece uma bonita, e simples implementação ActiveRecord para trabalhar com o seu banco de dados. Cada trabala do banco de dados tem a um "Modelo" correspondente que é usado para interagir com determinada tabela.
 </p>
 <h4 align="left">
-    <a href="https://joe-wadsworth.medium.com/laravel-repository-service-pattern-acf50f95726">🔗 Service Layer Leia Sobre</a>
+    <a href="https://laravel-docs-pt-br.readthedocs.io/en/latest/eloquent/">🔗 Models Leia Sobre</a>
 </h4>
 
 
+<h3> PhpUnit</h3>
+<p dir="auto">
+PHPUnit é um dos mais antigos e conhecidos pacotes de testes unitários para PHP. Ele é projetado principalmente para testes unitários, o que significa testar seu código nos menores componentes possíveis, mas também é incrivelmente flexível e pode ser usado para muito mais do que apenas testes unitários.
+</p>
+<h4 align="left">
+    <a href="https://imasters.com.br/back-end/phpunit-no-laravel-parte-01">🔗 Models Leia Sobre</a>
+</h4>
 
 
 
