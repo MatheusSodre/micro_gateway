@@ -4,7 +4,7 @@ services:
     micro_01:
         build:
             args:
-                user: matheus
+                user: admin
                 uid: 1000
             context: ./
             dockerfile: Dockerfile
@@ -47,7 +47,7 @@ services:
         volumes:
             - ./.docker/mysql/dbdata:/var/lib/mysql
         ports:
-            - 3308:3306
+            - 3306:3306
         command: mysqld --character-set-server=utf8mb4
                 --collation-server=utf8mb4_unicode_ci
                 --default-authentication-plugin=mysql_native_password --sql-mode=""
@@ -58,7 +58,7 @@ services:
     queue:
         build:
             args:
-                user: matheus
+                user: admin
                 uid: 1000
             context: ./
             dockerfile: Dockerfile

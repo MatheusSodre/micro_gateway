@@ -37,7 +37,7 @@ class CompanyTest extends TestCase
      * Validar se GET está  correto para uma company.
      * @return void
      */
-    public function test_get_single_category()
+    public function test_get_single_company()
     {
         $company = Company::factory()->create();
 
@@ -49,7 +49,7 @@ class CompanyTest extends TestCase
      * Validar se POST store está  retornando "422 validation" para uma company.
      * @return void
      */
-    public function test_validations_store_category()
+    public function test_validations_store_company()
     {
     
         $response = $this->postJson($this->endpoint,[
@@ -67,7 +67,7 @@ class CompanyTest extends TestCase
      * Validar se POST store está ok 201 created.
      * @return void
      */
-    public function test_store_category()
+    public function test_store_company()
     {
         $category = Category::factory()->create();
 
