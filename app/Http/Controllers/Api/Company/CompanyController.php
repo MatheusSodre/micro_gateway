@@ -24,9 +24,10 @@ class CompanyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index():JsonResponse
+    public function index()
     {
-        return Response::json(CompanyResource::collection($this->companyService->getPaginate(['category'],5)),HttpResponse::HTTP_OK);
+        return  CompanyResource::collection($this->companyService->getPaginate(['category'],5));
+        // return Response::json(CompanyResource::collection($this->companyService->getPaginate(['category'],5)),HttpResponse::HTTP_OK);
     }
 
     /**
