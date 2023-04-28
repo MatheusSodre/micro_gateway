@@ -36,18 +36,18 @@ class CompanyService
     {
         return $this->companyRepository->paginate($relations,$limit,$columns);
     }
-    public function getById($id)
+    public function getCompanyByUUID(string $field, string $uuid = null)
     {
-        return $this->companyRepository->findOrFail($id);
+        return $this->companyRepository->getCompanyByUUID($field,$uuid);
     }
 
-    public function update($request,$id):bool|null
+    public function updateCompanyByUUID($field,$request,$uuid):bool|null
     {
-        return $this->companyRepository->update($request,$id);
+        return $this->companyRepository->updateCompanyByUUID($field,$uuid,$request);
     }
 
-    public function destroy($id):bool|null
+    public function destroyByUUID($filed,$id):bool|null
     {
-        return $this->companyRepository->delete($id);
+        return $this->companyRepository->destroyByUUID($filed,$id);
     }
 }

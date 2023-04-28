@@ -27,7 +27,6 @@ class CompanyController extends Controller
     public function index()
     {
         return CompanyResource::collection($this->companyService->getPaginate());
-        // return Response::json(CompanyResource::collection($this->companyService->getPaginate(['category'],5)),HttpResponse::HTTP_OK);
     }
 
     /**
@@ -41,17 +40,17 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id):JsonResponse
+    public function show(string $uuid):JsonResponse
     {
-        return Response::json(new CompanyResource($this->companyService->getById($id)),HttpResponse::HTTP_OK);
+        return Response::json(new CompanyResource($this->companyService->getCompanyByUUID('uuid',$uuid)),HttpResponse::HTTP_OK);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreUpdateCompany $request, string $id)
+    public function update(StoreUpdateCompany $request, string $uuid)
     {
-        return $this->companyService->update($request->validated(),$id);
+        return $this->companyService->UpdateCompanyByUUID('uuid',$request->validated(),$uuid);
     }
 
     /**
@@ -59,6 +58,6 @@ class CompanyController extends Controller
      */
     public function destroy(string $id):JsonResponse
     {
-        return Response::json($this->companyService->destroy($id),HttpResponse::HTTP_NO_CONTENT);
+        return Response::json($this->companyService->destroyByUUID('uuid',$id),HttpResponse::HTTP_NO_CONTENT);
     }
 }
