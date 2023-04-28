@@ -56,8 +56,8 @@ class CompanyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id):JsonResponse
+    public function destroy(string $uuid):JsonResponse
     {
-        return Response::json($this->companyService->destroyByUUID('uuid',$id),HttpResponse::HTTP_NO_CONTENT);
+        return Response::json($this->companyService->destroyByUUID('uuid',$uuid),HttpResponse::HTTP_NO_CONTENT);
     }
 }

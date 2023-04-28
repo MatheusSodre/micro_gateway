@@ -6,7 +6,7 @@ use App\Interfaces\BaseRepositoryInterface;
  {
     public function getCompanyByUUID(string $fild,string $uuid = null);
     public function updateCompanyByUUID(string $field,string $uuid = null,array $data);
-    public function destroyByUUID(string $uuid);
+    public function destroyByUUID(string $fild,string $uuid);
  }
 
 ?>

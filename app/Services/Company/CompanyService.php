@@ -36,6 +36,7 @@ class CompanyService
     {
         return $this->companyRepository->paginate($relations,$limit,$columns);
     }
+    
     public function getCompanyByUUID(string $field, string $uuid = null)
     {
         return $this->companyRepository->getCompanyByUUID($field,$uuid);

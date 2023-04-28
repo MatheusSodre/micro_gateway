@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Interfaces\Company\CategoryRepositoryInterface;
+
 use App\Models\Company\{
     Category,
     Company
