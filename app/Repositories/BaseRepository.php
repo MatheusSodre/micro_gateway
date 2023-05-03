@@ -63,9 +63,9 @@ class BaseRepository implements BaseRepositoryInterface
      * @param  int  $id
      * @return mixed
      */
-    public function findOrFail(int $id): mixed
+    public function findOrFail(string $field,string $uuid = null): mixed
     {
-        return $this->model->findOrFail($id);
+        return $this->model->where($field)->findOrFail($uuid);
     }
 
     /**

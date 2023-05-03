@@ -1,12 +1,12 @@
-<?php 
+<?php
 namespace App\Interfaces;
 
- interface BaseRepositoryInterface 
+ interface BaseRepositoryInterface
  {
     public function all();
     public function paginate($relations = [], $limit = null, $columns = ['*']);
     public function create(array $data);
-    public function findOrFail(int $id);
+    public function findOrFail(string $field,string $uuid = null);
     public function update(array $data, $id);
     public function delete($id);
     public function updateOrCreate(array $attributes, array $values);

@@ -1,10 +1,8 @@
 <?php
 
-use App\Http\Controllers\Api\Company\CategoryController;
-use App\Http\Controllers\Api\Company\CompanyController;
+
+use App\Http\Controllers\Api\Evaluation\EvaluationController;
 use Illuminate\Support\Facades\Route;
 
-Route::apiResource('categories',CategoryController::class);
-
-Route::apiResource('companies',CompanyController::class);
+Route::get('/evaluations/{company}',[EvaluationController::class,'index']);
 
