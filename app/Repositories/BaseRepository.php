@@ -63,9 +63,9 @@ class BaseRepository implements BaseRepositoryInterface
      * @param  int  $id
      * @return mixed
      */
-    public function findOrFail(string $field,string $uuid = null): mixed
+    public function findOrFail(int $id): mixed
     {
-        return $this->model->where($field)->findOrFail($uuid);
+        return $this->model->findOrFail($id);
     }
 
     /**
@@ -75,11 +75,6 @@ class BaseRepository implements BaseRepositoryInterface
      * @param  array  $data
      * @return bool
      */
-    // public function update(Model $entity, array $data): bool
-    // {
-    //     return $entity->update($data);
-    // }
-
     public function update(array $data, $id)
     {
         return $this->model->findOrFail($id)->update($data);;

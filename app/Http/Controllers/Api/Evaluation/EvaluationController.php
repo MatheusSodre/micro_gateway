@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Evaluation;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Evaluation\StoreEvaluation;
 use App\Http\Resources\Evaluation\EvaluationResource;
 use App\Services\Evaluation\EvaluationService;
 use Illuminate\Http\Request;
@@ -24,15 +25,15 @@ class EvaluationController extends Controller
      */
     public function index($company)
     {
-       return EvaluationResource::collection($this->evaluationService->getAll('company',$company));
+       return EvaluationResource::collection($this->evaluationService->getEvaluationCompany($company));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request):JsonResponse
+    public function store(StoreEvaluation $request,$company):JsonResponse
     {
-       return Response::json(new EvaluationResource($this->evaluationService->store($request->all())),HttpResponse::HTTP_CREATED);
+            return Response::json(new EvaluationResource($this->evaluationService->store($request->validated(),$company)),HttpResponse::HTTP_CREATED);
     }
 
     /**

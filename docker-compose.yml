@@ -49,7 +49,7 @@ services:
             - microservices02
 
     # queue micro 02
-    queue_micro_01:
+    queue_micro_02:
         build:
             args:
                 user: admin

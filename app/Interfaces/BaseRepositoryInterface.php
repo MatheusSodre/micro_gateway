@@ -6,7 +6,7 @@ namespace App\Interfaces;
     public function all();
     public function paginate($relations = [], $limit = null, $columns = ['*']);
     public function create(array $data);
-    public function findOrFail(string $field,string $uuid = null);
+    public function findOrFail(int $id);
     public function update(array $data, $id);
     public function delete($id);
     public function updateOrCreate(array $attributes, array $values);

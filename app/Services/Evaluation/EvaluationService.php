@@ -2,6 +2,8 @@
 
 namespace App\Services\Evaluation;
 use App\Repositories\Evaluation\EvaluationRepository;
+use App\Services\ServicesExternal\Company\CompanyService;
+
 
 
 class EvaluationService
@@ -14,21 +16,22 @@ class EvaluationService
      * @param  EvaluationRepository  $evaluationRepository
      * @return void
      */
-    public function __construct(private EvaluationRepository $evaluationRepository)
+    public function __construct(private EvaluationRepository $evaluationRepository,private CompanyService $companyService)
     {
         //
     }
 
-    public function store(array $data)
+    
+    public function getEvaluationCompany(string $company)
     {
-        return $this->evaluationRepository->create($data);
+        return $this->evaluationRepository->getEvaluationCompany($company);
     }
 
-
-    public function getAll(string $field, string $uuid)
+    public function store(array $data,$company)
     {
-        // return $this->evaluationRepository->all();
-        return $this->evaluationRepository->findOrFail($field, $uuid);
+        $response = $this->companyService->getCompany($company);
+        
+        return $this->evaluationRepository->create($data);
     }
 
 
