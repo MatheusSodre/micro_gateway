@@ -1,7 +1,7 @@
 version: "3.7"
 services:
     # imagem micro 02
-    micro_02:
+    micro_gateway:
         build:
             args:
                 user: admin
@@ -14,65 +14,20 @@ services:
         volumes:
             - ./:/var/www
         networks:
-            - microservices02
+            - gateaway
 
     # nginx
     nginx:
         image: nginx:alpine
         restart: unless-stopped
         ports:
-            - 8001:80
+            - 8003:80
         volumes:
             - ./:/var/www
             - ./docker/nginx/:/etc/nginx/conf.d/
         networks:
-            - microservices02
-
-    # mysql micro 02
-    db_micro_02:
-        container_name: db_micro_02
-        image: mysql:8.0
-        restart: unless-stopped
-        environment:
-            MYSQL_DATABASE: ${DB_DATABASE}
-            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-            MYSQL_PASSWORD: ${DB_PASSWORD}
-            MYSQL_USER: ${DB_USERNAME}
-        volumes:
-            - ./.docker/mysql/dbdata:/var/lib/mysql
-        ports:
-            - 3309:3306
-        command: mysqld --character-set-server=utf8mb4
-                --collation-server=utf8mb4_unicode_ci
-                --default-authentication-plugin=mysql_native_password --sql-mode=""
-        networks:
-            - microservices02
-
-    # queue micro 02
-    queue_micro_02:
-        build:
-            args:
-                user: admin
-                uid: 1000
-            context: ./
-            dockerfile: Dockerfile
-        # restart: unless-stopped
-        command: "php artisan queue:work"
-        volumes:
-            - ./:/var/www
-        depends_on:
-            - redis_micro_02
-        networks:
-            - microservices02
-
-    #redis
-    redis_micro_02:
-        image: redis:latest
-        ports:
-            - 6379:6379
-        networks:
-            - microservices02
+            - gateaway
 
 networks:
-    microservices02:
+    gateaway:
         driver: bridge
