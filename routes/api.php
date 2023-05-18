@@ -6,8 +6,10 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/companies',[CompanyController::class,'index']);
-Route::get('/companies/{company}',[CompanyController::class,'show']);
 Route::post('/companies',[CompanyController::class,'store']);
+Route::get('/companies/{company}',[CompanyController::class,'show']);
+Route::put('/companies/{company}',[CompanyController::class,'update']);
+Route::delete('/companies/{company}',[CompanyController::class,'destroy']);
 
 Route::get('/', function () {
     return response()->json(['message' => 'success']);

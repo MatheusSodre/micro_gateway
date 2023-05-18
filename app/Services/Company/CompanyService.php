@@ -30,9 +30,20 @@ class CompanyService
 
     public function getCompanyId($id)
     {
-        
         $response = $this->http->get( $this->url . '/' .$id);
         return json_decode($response->body(),$response->status());
+    }
+
+    public function updateCompanyId($id,$params)
+    {
+        $response = $this->http->delete($this->url. '/' . $id,$params);
+        return Response()->json(json_decode($response->body()), $response->status());
+    }
+
+    public function deleteCompany($id)
+    {
+        $response = $this->http->delete($this->url. '/' . $id);
+        return Response()->json(json_decode($response->body()),$response->status());
     }
 }
 

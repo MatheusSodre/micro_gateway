@@ -9,7 +9,6 @@ class DefaultResponse
     public function response(Response $response)
     {
         $body = json_decode($response->body());
-
         if ($response->status() !== 200) {
             return response()->json($body, $response->status());
         }

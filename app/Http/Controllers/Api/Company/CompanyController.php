@@ -44,7 +44,7 @@ class CompanyController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return Response()->json($this->companyService->updateCompanyId($id));
     }
 
     /**
@@ -52,6 +52,6 @@ class CompanyController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return $this->companyService->deleteCompany($id);
     }
 }
