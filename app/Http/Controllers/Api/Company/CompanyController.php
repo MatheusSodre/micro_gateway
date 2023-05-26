@@ -4,10 +4,7 @@ namespace App\Http\Controllers\Api\Company;
 
 
 use App\Http\Controllers\Controller;
-
-
 use App\Services\Company\CompanyService;
-use Illuminate\Auth\Access\Response;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -36,7 +33,7 @@ class CompanyController extends Controller
      */
     public function show(string $id)
     {
-        return Response()->json($this->companyService->getCompanyId($id));
+        return $this->companyService->getCompanyId($id);
     }
 
     /**
@@ -44,7 +41,7 @@ class CompanyController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        return Response()->json($this->companyService->updateCompanyId($id));
+        return $this->companyService->updateCompanyId($id,$request);
     }
 
     /**
