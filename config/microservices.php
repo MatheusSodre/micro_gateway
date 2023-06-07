@@ -7,6 +7,10 @@ return[
         ],
         'micro_02' =>[
             'url' => env('MICRO_02_URL')
+        ],
+        'micro_auth' =>[
+            'url' => env('MICRO_AUTH_URL')
         ]
+
     ]
 ];
