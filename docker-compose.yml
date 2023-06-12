@@ -16,6 +16,9 @@ services:
         networks:
             - gateaway
 
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+
     # nginx
     nginx:
         image: nginx:alpine

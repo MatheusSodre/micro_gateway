@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Services\User;
 use App\Http\Utils\DefaultResponse;
 use Illuminate\Support\Facades\Http;
