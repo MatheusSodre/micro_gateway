@@ -20,9 +20,17 @@ class AuthController extends Controller
         return $this->authService->authUser($request->all());
     }
 
-    public function me()
+    public function me(Request $request)
     {
-        # code...
+        return $this->authService->getMe([
+            'Authorization' => $request->header('Authorization')
+        ]);
     }
 
+    public function logout(Request $request)
+    {
+        return $this->authService->logout([
+            'Authorization' => $request->header('Authorization')
+        ]);
+    }
 }

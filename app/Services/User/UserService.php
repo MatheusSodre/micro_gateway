@@ -18,6 +18,7 @@ class UserService
                             ]);
     }
 
+    
     public function addPermissionUser(array $params=[])
     {
         $response = $this->http

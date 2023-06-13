@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Controller;
 
-use App\Services\User\PermissionUserService;
 use App\Services\User\UserService;
 use Illuminate\Http\Request;
 

@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\Api\Company\CompanyController;
 use App\Http\Controllers\Api\Evaluation\EvaluationController;
-use App\Http\Controllers\Api\User\AuthController;
-use App\Http\Controllers\Api\User\PermissionUserController;
-use App\Http\Controllers\Api\User\RegisterController;
+use App\Http\Controllers\Api\User\{
+    AuthController,
+    PermissionUserController,
+    RegisterController,
+    UserController,
+};
 use Illuminate\Support\Facades\Route;
 
 
@@ -16,7 +19,10 @@ Route::delete('/companies/{company}',[CompanyController::class,'destroy']);
 
 Route::post('/register',[RegisterController::class, 'store']);
 Route::post('/auth',    [AuthController::class, 'authUser']);
+Route::post('/logout',  [AuthController::class, 'logout']);
+Route::get('/me',       [AuthController::class, 'me']);
 Route::post('/user/permission',[PermissionUserController::class, 'addPermissionUser']);
+
 
 
 Route::get('/', function () {

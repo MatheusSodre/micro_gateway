@@ -27,7 +27,14 @@ class AuthService
         $response = $this->http
                             ->withHeaders($headers)
                             ->get($this->url . '/api/me');
-
+        return response()->json(json_decode($response), $response->status());
+    }
+    public function logout(array $headers)
+    {
+        $response = $this->http
+                            ->withHeaders($headers)
+                            ->post($this->url . '/api/logout');
+        
         return response()->json(json_decode($response), $response->status());
     }
 }
