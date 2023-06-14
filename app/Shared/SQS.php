@@ -4,7 +4,7 @@ namespace App\Shared;
 
 use Aws\Sqs\SqsClient;
 use Illuminate\Support\Facades\Config;
-
+//Base
 class SQS
 {
     private string $queueUrl;
