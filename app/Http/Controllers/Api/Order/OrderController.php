@@ -23,9 +23,9 @@ class OrderController extends Controller
             Log::debug('Set setPayload from request');
             $service->setPayload($request->all());
             Log::debug('call execute from OrderProcessValidatorService');
-            $service->execute();
+            $sqs = $service->execute();
             Log::info('Finished OrderProcessValidatorService', ['Idempotency-Key' => $idempotency, 'parameters' => $request->all()]);
-            return response()->json(['success' => true], HTTP::HTTP_OK);
+            return response()->json(['success' => true, 'id' => $sqs->get('MessageId')], HTTP::HTTP_OK);
         } catch (\Exception|\Throwable $exception) {
             Log::emergency('', ['parameters' => $request->all(), 'error' => $exception->getMessage()]);
             return response()->json(['success' => false, 'messages' => [$exception->getMessage()]], HTTP::HTTP_BAD_REQUEST);
