@@ -8,16 +8,16 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function __construct(protected UserService $userService) {
-        
+    public function __construct(protected UserService $userService) 
+    {
     }
 
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        
+        return $this->userService->allUser($request->all());
     }
 
     /**
@@ -25,30 +25,30 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $this->userService->createUser($request->all());
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $identify)
     {
-        
+        return $this->userService->getUser($identify);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $identify)
     {
-        //
+        return $this->userService->updateUser($identify,$request->all());
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $identify)
     {
-        //
+        return $this->userService->deleteUser($identify);
     }
 }
