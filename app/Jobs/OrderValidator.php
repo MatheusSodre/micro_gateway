@@ -19,9 +19,7 @@ class OrderValidator
 
     public function serialize()
     {
-        if (!isset($this->params['uuid'])) {
-            $this->params['uuid'] = $this->correlationId;
-        }
+        $this->params['uuid'] = $this->correlationId;
         return serialize([
             'params' => $this->params,
             'correlationId' => $this->correlationId,
