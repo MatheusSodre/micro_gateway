@@ -11,6 +11,7 @@ class OrderValidator
 
     public function __construct($params, $correlationId)
     {
+        $this->params['uuid'] = $this->correlationId;
         $this->params = $params;
         $this->correlationId = $correlationId;
         $this->connection = 'sqs';
@@ -19,7 +20,6 @@ class OrderValidator
 
     public function serialize()
     {
-        $this->params['uuid'] = $this->correlationId;
         return serialize([
             'params' => $this->params,
             'correlationId' => $this->correlationId,
