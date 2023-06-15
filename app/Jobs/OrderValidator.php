@@ -16,8 +16,12 @@ class OrderValidator
         $this->connection = 'sqs';
         $this->queue = 'order-validator-queue';
     }
+
     public function serialize()
     {
+        if (!isset($this->params['uuid'])) {
+            $this->params['uuid'] = $this->correlationId;
+        }
         return serialize([
             'params' => $this->params,
             'correlationId' => $this->correlationId,
