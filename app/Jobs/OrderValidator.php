@@ -11,8 +11,8 @@ class OrderValidator
 
     public function __construct($params, $correlationId)
     {
-        $this->params['uuid'] = $this->correlationId;
         $this->params = $params;
+        $this->params['uuid'] = $this->correlationId;
         $this->correlationId = $correlationId;
         $this->connection = 'sqs';
         $this->queue = 'order-validator-queue';
