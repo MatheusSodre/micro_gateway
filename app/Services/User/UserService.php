@@ -48,7 +48,6 @@ class UserService
                             ->delete($this->url . "/user/{$identify}");
         return response()->json(json_decode($response->body()), $response->status());                    
     }
-    
     public function addPermissionUser(array $params=[])
     {
         $response = $this->http

@@ -11,6 +11,10 @@ class CompanyController extends Controller
 {
     public function __construct(protected CompanyService $companyService)
     {
+        $this->middleware('permission:visualizar_empresas')->only('index');
+        $this->middleware('permission:visualizar_empresa')->only('show');
+        $this->middleware('permission:editar_empresa')->only('update');
+        $this->middleware('permission:deletar_empresa')->only('destroy');
     }
     /**
      * Display a listing of the resource.
