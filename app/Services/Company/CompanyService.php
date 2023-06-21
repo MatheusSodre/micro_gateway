@@ -17,9 +17,9 @@ class CompanyService
 
     }
 
-    public function getAllCompanies(array $params=[])
+    public function getAllCompanies()
     {
-        $response = $this->http->get( $this->url,$params);
+        $response = $this->http->get( $this->url);
         return $this->defaultResponse->response($response);
     }
 

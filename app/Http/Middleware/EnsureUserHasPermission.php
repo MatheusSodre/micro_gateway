@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class EnsureUserHasPermission
 {
+    
     /**
      * Handle an incoming request.
      *
