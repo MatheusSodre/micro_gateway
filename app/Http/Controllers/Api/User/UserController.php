@@ -5,23 +5,67 @@ namespace App\Http\Controllers\Api\User;
 use App\Http\Controllers\Controller;
 use App\Services\User\UserService;
 use Illuminate\Http\Request;
+use OpenApi\Annotations as OA;
 
+/**
+*@OA\PathItem(
+*path="/user",
+*)
+*/
 class UserController extends Controller
 {
     public function __construct(protected UserService $userService) 
     {
     }
+    
+    
 
     /**
-     * Display a listing of the resource.
-     */
+    * @OA\Get(
+    *   path="/api/user",
+    *   tags={"user"},
+    *   summary="Pegar tosdos usuarios",
+    *   security={{"bearer_token":{}}},
+    *   @OA\Response(response="200",description="successful operation",),
+    * )
+    *    
+    */
     public function index(Request $request)
     {
         return $this->userService->allUser($request->all());
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *     path="/api/user",
+     *     tags={"user"},
+     *     summary="Adicionar usuario",
+     *     security={{"bearer_token":{}}},
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="name",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="email",
+     *                     type="email"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="password",
+     *                     type="password"
+     *                 ),
+     *                 example={"name": "Matheus Sodré","email" : "matheus@email.com","password": "senha12324"}
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK"
+     *     )
+     * )
      */
     public function store(Request $request)
     {
