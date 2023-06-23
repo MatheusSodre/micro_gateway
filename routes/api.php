@@ -1,9 +1,6 @@
 <?php
-
-use App\Http\Controllers\Api\Account\AccountController;
 use App\Http\Controllers\Api\Company\CompanyController;
 use App\Http\Controllers\Api\Order\OrderController;
-use App\Http\Controllers\Api\sqs\SQSMessagesController;
 use App\Http\Controllers\Api\User\{
     AuthController,
     PermissionUserController,
@@ -40,19 +37,8 @@ Route::get('/', function () {
 });
 
 Route::prefix('order')->group(function () {
-    Route::middleware('auth:sanctum')->group(function () {
+    // TODO -  add middleware feito pelo sodré
+    Route::middleware(null)->group(function () {
         Route::post('/validator', [OrderController::class, '__invoke'])->name('order.validator');
     });
 });
-Route::prefix('auth')->group(function () {
-    Route::middleware('guest')->group(function () {
-        Route::post('/login', [AccountController::class, 'login'])->name('auth.login');
-    });
-});
-
-Route::prefix('sqs')->group(function () {
-    Route::middleware('auth:sanctum')->group(function () {
-        Route::get('/messages', [SQSMessagesController::class, 'index'])->name('sqs-messages.index');
-    });
-});
-
