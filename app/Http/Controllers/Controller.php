@@ -8,7 +8,7 @@ use Illuminate\Routing\Controller as BaseController;
 
 /**
  * @OA\Info(
- *    title="Gateway Apis terrabyte",
+ *    title="Gateway Apis terabyte",
  *    version="1.0.0",
  * ),
  */
