@@ -7,7 +7,7 @@ use App\Interfaces\Evaluation\EvaluationRepositoryInterface;
 use App\Models\Evaluation\Evaluation;
 use App\Repositories\BaseRepository;
 
-class EvaluationRepository extends BaseRepository implements EvaluationRepositoryInterface
+class EvaluationRepository extends BaseRepository 
 {
     public function __construct(Evaluation $evaluation)
     {
