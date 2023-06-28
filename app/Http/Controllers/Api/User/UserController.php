@@ -25,10 +25,16 @@ class UserController extends Controller
     *   tags={"user"},
     *   summary="Pegar todos usuarios",
     *   security={{"bearer_token":{}}},
-    *   @OA\Response(
-    *       response="200",
-    *       description="successful operation"
-    *    ),
+     *     @OA\Response(
+     *            response=200,
+     *            description="OK",
+     *     @OA\JsonContent(
+     *             @OA\Property(property="ideentify", type="string"),
+     *             @OA\Property(property="name", type="string"),
+     *             @OA\Property(property="email", type="string"),
+     *             @OA\Property(property="permissions", type="string")
+     *         )
+     *    ),
     * )
     *    
     */
@@ -92,16 +98,20 @@ class UserController extends Controller
      *          required=true,
      *          in="path",
      *          @OA\Schema(
-     *              type="integer"
+     *              type="string"
      *          ),
      *         @OA\Schema(type="string"),
-     *         @OA\Examples(example="uuid", value="0006faf6-7a61-426c-9034-579f2cfcfa83", summary="valor UUID"),
      *      ),
-     *      @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *     
-     *       ),
+     *     @OA\Response(
+     *            response=200,
+     *            description="OK",
+     *     @OA\JsonContent(
+     *             @OA\Property(property="ideentify", type="string"),
+     *             @OA\Property(property="name", type="string"),
+     *             @OA\Property(property="email", type="string"),
+     *             @OA\Property(property="permissions", type="string")
+     *         )
+     *    ),
      *      @OA\Response(
      *          response=400,
      *          description="Bad Request"
@@ -109,10 +119,6 @@ class UserController extends Controller
      *      @OA\Response(
      *          response=401,
      *          description="Unauthenticated",
-     *      ),
-     *      @OA\Response(
-     *          response=403,
-     *          description="Forbidden"
      *      )
      * )
      */
@@ -134,7 +140,7 @@ class UserController extends Controller
      *         @OA\Examples(example="uuid", value="0006faf6-7a61-426c-9034-579f2cfcfa83", summary="valor UUID"),
      *     ),
      *     @OA\Response(
-     *         response=200,
+     *         response=201,
      *         description="OK"
      *     )
      * )
