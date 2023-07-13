@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Company\CompanyController;
+use App\Http\Controllers\Api\Order\OrderController;
 use App\Http\Controllers\Api\User\{
     AuthController,
     PermissionUserController,
@@ -24,3 +25,6 @@ Route::apiResource('/companies',CompanyController::class);
 Route::get('/', function () {
     return response()->json(['message' => 'success']);
 });
+
+
+Route::post('/order/validator',[OrderController::class, 'sendPayload'])->name('order.validator');

@@ -54,8 +54,29 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['single', 'graylog'],
             'ignore_exceptions' => false,
+        ],
+        'graylog' => [
+            'driver' => 'custom',
+            'via' => \Hedii\LaravelGelfLogger\GelfLoggerFactory::class,
+            'processors' => [
+                \Hedii\LaravelGelfLogger\Processors\NullStringProcessor::class,
+            ],
+            'level' => 'debug',
+            'name' => 'micro-central-app',
+            'system_name' => null,
+            'transport' => 'udp',
+            'host' => env('LOG_GRAYLOG_HOST'),
+            'port' => env('LOG_GRAYLOG_PORT'),
+            'path' => null,
+            'ssl' => false,
+            'ssl_options' => [
+                'verify_peer' => true,
+                'ca_file' => null,
+                'ciphers' => null,
+                'allow_self_signed' => false,
+            ],
         ],
 
         'single' => [
