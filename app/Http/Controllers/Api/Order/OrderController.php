@@ -24,7 +24,18 @@ class OrderController extends Controller
         try {
             Log::info('Initialize order validator process', ['parameters' => $request->all()]);
             Log::debug('Call header from request to get Idempotency');
-            return response()->json(['success' => true, 'id' => '10'], HttpResponse::HTTP_OK);
+            $idempotency = $request->header('Idempotency-Key');
+            Log::debug('Call OrderService', ['Idempotency-Key' => $idempotency, 'parameters' => $request->all()]);
+            $service = new OrderService();
+            Log::debug('Set setCorrelationId with Idempotency');
+            $service->setCorrelationId($idempotency);
+            Log::debug('Set setPayload from request');
+            $service->setPayload($request->all());
+            Log::debug('call execute from OrderService');
+            $sqs = $service->execute();
+            Log::info('Finished OrderService', ['Idempotency-Key' => $idempotency, 'parameters' => $request->all()]);
+            return response()->json(['success' => true, 'id' => $sqs->get('MessageId')], HttpResponse::HTTP_OK);
+            
         } catch (\Exception|\Throwable $exception) {
             Log::emergency('', ['parameters' => $request->all(), 'error' => $exception->getMessage()]);
             return response()->json(['success' => false, 'messages' => [$exception->getMessage()]], HttpResponse::HTTP_BAD_REQUEST);

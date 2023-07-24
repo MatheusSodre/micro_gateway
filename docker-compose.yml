@@ -14,10 +14,10 @@ services:
         volumes:
             - ./:/var/www
         networks:
-            - gateaway
+            - local
 
-        extra_hosts:
-            - "host.docker.internal:host-gateway"
+        # extra_hosts:
+        #     - "host.docker.internal:host-gateway"
 
     # nginx
     nginx:
@@ -29,8 +29,8 @@ services:
             - ./:/var/www
             - ./docker/nginx/:/etc/nginx/conf.d/
         networks:
-            - gateaway
+            - local
 
 networks:
-    gateaway:
+    local:
         driver: bridge
